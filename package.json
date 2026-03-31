@@ -1,0 +1,17 @@
+{
+  "name": "easing-gradients",
+  "version": "0.0.1",
+  "description": "Adds easing functions to CSS gradients in Tailwind CSS.",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm -r dev",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
+  }
+}
