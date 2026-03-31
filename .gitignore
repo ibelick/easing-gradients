@@ -1,0 +1,11 @@
+node_modules
+.pnpm-debug.log
+dist
+coverage
+.env
+.env.*
+.DS_Store
+
+apps/site/dist
+apps/site/.vite
+packages/*/dist
