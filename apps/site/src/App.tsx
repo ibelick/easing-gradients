@@ -5,7 +5,7 @@ export default function App() {
     <main className="min-h-screen px-5 py-20">
       <div className="mx-auto flex max-w-2xl flex-col gap-14">
         <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-end gap-2">
             <h1 className="font-medium leading-tight text-strong">
               Easing Gradients
             </h1>
@@ -14,7 +14,7 @@ export default function App() {
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub repository"
-              className="text-muted transition-colors hover:text-strong"
+              className="mb-0.5 inline-flex h-4 w-4 items-center justify-center text-muted transition-colors hover:text-strong"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

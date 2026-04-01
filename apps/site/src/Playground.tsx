@@ -123,6 +123,12 @@ export default function Playground() {
     });
   };
 
+  const switchToCustomFromCurve = () => {
+    if (preset === "custom") return;
+    setCustom(graphCurve);
+    setPreset("custom");
+  };
+
   const updateHandle = (event: PointerEvent<SVGSVGElement>, handle: 1 | 2) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / rect.width) * 220;
@@ -173,7 +179,10 @@ export default function Playground() {
           </label>
 
           <label className="flex flex-col gap-2">
-            <span className="text-muted">Mask height: {maskHeight}%</span>
+            <span className="flex items-center justify-between text-muted">
+              <span>Max height</span>
+              <span>{maskHeight}%</span>
+            </span>
             <input
               type="range"
               min="0"
@@ -198,6 +207,9 @@ export default function Playground() {
             <svg
               viewBox="0 0 220 220"
               className="absolute inset-0 h-full w-full touch-none overflow-visible"
+              onPointerDown={() => {
+                switchToCustomFromCurve();
+              }}
               onPointerMove={(event) => {
                 if (preset === "custom" && activeHandle) {
                   updateHandle(event, activeHandle);
@@ -241,10 +253,12 @@ export default function Playground() {
                 className={
                   preset === "custom"
                     ? "cursor-grab text-strong active:cursor-grabbing"
-                    : "text-muted"
+                    : "cursor-pointer text-muted"
                 }
                 onPointerDown={(event) => {
-                  if (preset !== "custom") return;
+                  if (preset !== "custom") {
+                    switchToCustomFromCurve();
+                  }
                   event.currentTarget.setPointerCapture(event.pointerId);
                   setActiveHandle(1);
                 }}
@@ -257,10 +271,12 @@ export default function Playground() {
                 className={
                   preset === "custom"
                     ? "cursor-grab text-strong active:cursor-grabbing"
-                    : "text-muted"
+                    : "cursor-pointer text-muted"
                 }
                 onPointerDown={(event) => {
-                  if (preset !== "custom") return;
+                  if (preset !== "custom") {
+                    switchToCustomFromCurve();
+                  }
                   event.currentTarget.setPointerCapture(event.pointerId);
                   setActiveHandle(2);
                 }}
