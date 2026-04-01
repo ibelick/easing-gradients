@@ -20,6 +20,7 @@ function makeGradientUtility(bezier: string): Record<string, string> {
   return {
     "--tw-ease-gradient-stops": easeStops,
     "--tw-gradient-via-stops": "var(--tw-ease-gradient-stops)",
+    "--tw-gradient-stops": "var(--tw-ease-gradient-stops)",
   }
 }
 

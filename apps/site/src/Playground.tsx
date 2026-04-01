@@ -75,6 +75,11 @@ export default function Playground() {
         ? `gradient-ease-[${formatBezier(custom)}]`
         : PRESET_CLASSES[preset];
 
+  const fullClassNamePreview =
+    preset === "none"
+      ? "bg-linear-to-b from-transparent to-black/80"
+      : `bg-linear-to-b from-transparent to-black/80 ${classNamePreview}`;
+
   const customStyle = useMemo(() => {
     if (preset !== "custom") return undefined;
 
@@ -87,6 +92,8 @@ export default function Playground() {
 
     return {
       "--tw-ease-gradient-stops": `var(--tw-gradient-position), ${stops}`,
+      "--tw-gradient-via-stops": "var(--tw-ease-gradient-stops)",
+      "--tw-gradient-stops": "var(--tw-ease-gradient-stops)",
     } as CSSProperties;
   }, [custom, preset]);
 
@@ -105,6 +112,8 @@ export default function Playground() {
 
     return `M ${points.join(" L ")}`;
   }, [curve]);
+
+  const graphCurve = curve ?? PRESETS.linear;
 
   const setPoint = (index: 0 | 1 | 2 | 3, value: number) => {
     setCustom((current) => {
@@ -139,11 +148,11 @@ export default function Playground() {
           <p className="text-muted">Preview</p>
           <div className="relative aspect-square w-full max-w-[320px] border border-border bg-white">
             <div
-              className={`pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t from-black to-transparent ${easingClass}`}
+              className={`pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-b from-transparent to-black/80 ${easingClass}`}
               style={{ ...customStyle, height: `${maskHeight}%` }}
             />
           </div>
-          <code>{classNamePreview}</code>
+          <code>{fullClassNamePreview}</code>
         </div>
 
         <div className="flex flex-col gap-3">
@@ -176,82 +185,88 @@ export default function Playground() {
             />
           </label>
 
-          {preset === "custom" ? (
-            <>
-              <div className="relative aspect-square w-full border border-border">
-                <div
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(to right, var(--color-subtle) 1px, transparent 1px), linear-gradient(to top, var(--color-subtle) 1px, transparent 1px)",
-                    backgroundSize: "20% 20%",
-                  }}
-                />
+          <div className="relative aspect-square w-full border border-border">
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, var(--color-subtle) 1px, transparent 1px), linear-gradient(to top, var(--color-subtle) 1px, transparent 1px)",
+                backgroundSize: "20% 20%",
+              }}
+            />
 
-                <svg
-                  viewBox="0 0 220 220"
-                  className="absolute inset-0 h-full w-full touch-none overflow-visible"
-                  onPointerMove={(event) => {
-                    if (activeHandle) updateHandle(event, activeHandle);
-                  }}
-                  onPointerUp={() => setActiveHandle(null)}
-                  onPointerCancel={() => setActiveHandle(null)}
-                  onPointerLeave={() => setActiveHandle(null)}
-                >
-                  <path
-                    d={`M${PLOT_MIN} ${PLOT_MAX} L${PLOT_MAX} ${PLOT_MAX}`}
-                    stroke="currentColor"
-                    className="text-border"
-                  />
-                  <path
-                    d={`M${PLOT_MIN} ${PLOT_MAX} L${PLOT_MIN} ${PLOT_MIN}`}
-                    stroke="currentColor"
-                    className="text-border"
-                  />
-                  <path
-                    d={`M${PLOT_MIN} ${PLOT_MAX} L${PLOT_MIN + custom[0] * PLOT_SIZE} ${PLOT_MAX - custom[1] * PLOT_SIZE}`}
-                    stroke="currentColor"
-                    className="text-muted"
-                  />
-                  <path
-                    d={`M${PLOT_MAX} ${PLOT_MIN} L${PLOT_MIN + custom[2] * PLOT_SIZE} ${PLOT_MAX - custom[3] * PLOT_SIZE}`}
-                    stroke="currentColor"
-                    className="text-muted"
-                  />
-                  <path
-                    d={curvePath}
-                    fill="none"
-                    stroke="currentColor"
-                    className="text-strong"
-                  />
-                  <circle
-                    cx={PLOT_MIN + custom[0] * PLOT_SIZE}
-                    cy={PLOT_MAX - custom[1] * PLOT_SIZE}
-                    r="4"
-                    fill="currentColor"
-                    className="cursor-grab text-strong active:cursor-grabbing"
-                    onPointerDown={(event) => {
-                      event.currentTarget.setPointerCapture(event.pointerId);
-                      setActiveHandle(1);
-                    }}
-                  />
-                  <circle
-                    cx={PLOT_MIN + custom[2] * PLOT_SIZE}
-                    cy={PLOT_MAX - custom[3] * PLOT_SIZE}
-                    r="4"
-                    fill="currentColor"
-                    className="cursor-grab text-strong active:cursor-grabbing"
-                    onPointerDown={(event) => {
-                      event.currentTarget.setPointerCapture(event.pointerId);
-                      setActiveHandle(2);
-                    }}
-                  />
-                </svg>
-              </div>
-            </>
-          ) : (
-            <p className="text-muted">Switch to custom to edit the curve.</p>
-          )}
+            <svg
+              viewBox="0 0 220 220"
+              className="absolute inset-0 h-full w-full touch-none overflow-visible"
+              onPointerMove={(event) => {
+                if (preset === "custom" && activeHandle) {
+                  updateHandle(event, activeHandle);
+                }
+              }}
+              onPointerUp={() => setActiveHandle(null)}
+              onPointerCancel={() => setActiveHandle(null)}
+              onPointerLeave={() => setActiveHandle(null)}
+            >
+              <path
+                d={`M${PLOT_MIN} ${PLOT_MAX} L${PLOT_MAX} ${PLOT_MAX}`}
+                stroke="currentColor"
+                className="text-border"
+              />
+              <path
+                d={`M${PLOT_MIN} ${PLOT_MAX} L${PLOT_MIN} ${PLOT_MIN}`}
+                stroke="currentColor"
+                className="text-border"
+              />
+              <path
+                d={`M${PLOT_MIN} ${PLOT_MAX} L${PLOT_MIN + graphCurve[0] * PLOT_SIZE} ${PLOT_MAX - graphCurve[1] * PLOT_SIZE}`}
+                stroke="currentColor"
+                className="text-muted"
+              />
+              <path
+                d={`M${PLOT_MAX} ${PLOT_MIN} L${PLOT_MIN + graphCurve[2] * PLOT_SIZE} ${PLOT_MAX - graphCurve[3] * PLOT_SIZE}`}
+                stroke="currentColor"
+                className="text-muted"
+              />
+              <path
+                d={curvePath}
+                fill="none"
+                stroke="currentColor"
+                className="text-strong"
+              />
+              <circle
+                cx={PLOT_MIN + graphCurve[0] * PLOT_SIZE}
+                cy={PLOT_MAX - graphCurve[1] * PLOT_SIZE}
+                r="4"
+                fill="currentColor"
+                className={
+                  preset === "custom"
+                    ? "cursor-grab text-strong active:cursor-grabbing"
+                    : "text-muted"
+                }
+                onPointerDown={(event) => {
+                  if (preset !== "custom") return;
+                  event.currentTarget.setPointerCapture(event.pointerId);
+                  setActiveHandle(1);
+                }}
+              />
+              <circle
+                cx={PLOT_MIN + graphCurve[2] * PLOT_SIZE}
+                cy={PLOT_MAX - graphCurve[3] * PLOT_SIZE}
+                r="4"
+                fill="currentColor"
+                className={
+                  preset === "custom"
+                    ? "cursor-grab text-strong active:cursor-grabbing"
+                    : "text-muted"
+                }
+                onPointerDown={(event) => {
+                  if (preset !== "custom") return;
+                  event.currentTarget.setPointerCapture(event.pointerId);
+                  setActiveHandle(2);
+                }}
+              />
+            </svg>
+          </div>
         </div>
       </div>
     </section>
