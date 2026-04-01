@@ -6,8 +6,7 @@
   --color-color-strong: var(--color-strong);
   --color-color-muted: var(--color-muted);
   --color-color-subtle: var(--color-subtle);
-  --text-sm: 0.8125rem;
-  --text-sm--line-height: 1.25rem;
+  
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -43,6 +42,15 @@ code {
   padding: 1px 4px;
   font-size: 13px;
   width: fit-content;
+}
+
+pre {
+  background: var(--color-subtle);
+  border-radius: 2px;
+  padding: 1px 4px;
+  display: flex;
+  width: fit-content;
+  white-space: pre-wrap;
 }
 
 * {

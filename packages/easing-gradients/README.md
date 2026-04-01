@@ -2,21 +2,19 @@
 
 Tailwind CSS plugin for eased gradient stops.
 
-It keeps Tailwind's standard gradient API (`bg-linear-*`, `from-*`, `to-*`) and adds a modifier utility:
-
-- `gradient-ease-linear`
-- `gradient-ease-in`
-- `gradient-ease-out`
-- `gradient-ease-in-out`
-- `gradient-ease-[cubic-bezier(...)]`
+| Class                               | Effect                        |
+| ----------------------------------- | ----------------------------- |
+| `gradient-ease-linear`              | Default linear distribution.  |
+| `gradient-ease-in`                  | More change toward the end.   |
+| `gradient-ease-out`                 | More change near the start.   |
+| `gradient-ease-in-out`              | Smooth ends, stronger middle. |
+| `gradient-ease-[cubic-bezier(...)]` | Custom easing curve.          |
 
 ## Install
 
 ```bash
 pnpm add easing-gradients
 ```
-
-## Tailwind v4 setup
 
 ```css
 @import "tailwindcss";
@@ -37,5 +35,6 @@ pnpm add easing-gradients
 
 ## Notes
 
-Inspired by https://larsenwork.com/easing-gradients/.
-Works with Tailwind CSS v4+.
+- Inspired by https://larsenwork.com/easing-gradients.
+- CSSWG proposal https://github.com/w3c/csswg-drafts/issues/1332
+- Works with Tailwind CSS v4+.
