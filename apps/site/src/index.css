@@ -2,11 +2,12 @@
 @plugin "../../../packages/easing-gradients/src/index.ts";
 
 @theme {
-  --color-color-bg: var(--color-bg);
-  --color-color-strong: var(--color-strong);
-  --color-color-muted: var(--color-muted);
-  --color-color-subtle: var(--color-subtle);
-  
+  --color-bg: var(--color-bg);
+  --color-strong: var(--color-strong);
+  --color-muted: var(--color-muted);
+  --color-subtle: var(--color-subtle);
+  --color-border: var(--color-border);
+
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -17,6 +18,7 @@
   --color-strong: #111111;
   --color-muted: #888888;
   --color-subtle: #f0f0f0;
+  --color-border: #ededed;
 }
 
 body {

@@ -1,6 +1,6 @@
 # easing-gradients
 
-Tailwind CSS plugin for eased gradient stops.
+Tailwind CSS plugin that eases gradient stop distribution to reduce hard edges in fades and overlays.
 
 | Class                               | Effect                        |
 | ----------------------------------- | ----------------------------- |
@@ -38,3 +38,4 @@ pnpm add easing-gradients
 - Inspired by https://larsenwork.com/easing-gradients.
 - CSSWG proposal https://github.com/w3c/csswg-drafts/issues/1332
 - Works with Tailwind CSS v4+.
+- License: [MIT](LICENSE)
