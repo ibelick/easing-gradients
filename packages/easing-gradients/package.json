@@ -1,6 +1,6 @@
 {
   "name": "easing-gradients",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Tailwind CSS v4 plugin for eased gradient stops",
   "license": "MIT",
   "type": "module",
