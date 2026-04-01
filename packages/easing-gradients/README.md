@@ -1,6 +1,10 @@
 # easing-gradients
 
+<!-- cover: coming soon -->
+
 Tailwind CSS plugin that eases gradient stop distribution to reduce hard edges in fades and overlays.
+
+[easing-gradients.ibelick.com](https://easing-gradients.ibelick.com)
 
 | Class                               | Effect                        |
 | ----------------------------------- | ----------------------------- |

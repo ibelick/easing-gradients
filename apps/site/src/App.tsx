@@ -1,3 +1,5 @@
+import Playground from "./Playground";
+
 export default function App() {
   return (
     <main className="min-h-screen px-5 py-20">
@@ -34,7 +36,7 @@ export default function App() {
 
         <div className="flex flex-col gap-6">
           <p className="font-[450] text-strong">Demo</p>
-          <div className="grid grid-cols-2 gap-4 text-center sm:gap-6">
+          <div className="grid grid-cols-2 gap-4 text-left sm:gap-6">
             <p className="text-muted">Without easing</p>
             <p className="text-muted">With easing</p>
           </div>
@@ -172,6 +174,8 @@ export default function App() {
             </tbody>
           </table>
         </div>
+
+        <Playground />
       </div>
     </main>
   );
