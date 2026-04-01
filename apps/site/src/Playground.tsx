@@ -143,10 +143,10 @@ export default function Playground() {
   return (
     <section className="flex flex-col gap-4">
       <p className="font-[450] text-strong">Playground</p>
-      <div className="grid gap-6 md:grid-cols-2 md:items-start">
-        <div className="flex flex-col gap-2">
+      <div className="grid gap-6 sm:grid-cols-5 sm:items-start">
+        <div className="flex flex-col gap-2 sm:col-span-3">
           <p className="text-muted">Preview</p>
-          <div className="relative aspect-square w-full max-w-[320px] border border-border bg-white">
+          <div className="relative aspect-square w-full border border-border bg-white">
             <div
               className={`pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-b from-transparent to-black/80 ${easingClass}`}
               style={{ ...customStyle, height: `${maskHeight}%` }}
@@ -155,7 +155,7 @@ export default function Playground() {
           <code>{fullClassNamePreview}</code>
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 sm:col-span-2">
           <label className="flex flex-col gap-2">
             <span className="text-muted">Fade</span>
             <select
