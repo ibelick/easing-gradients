@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "../../../packages/easing-gradients/src/index.ts";
 
 @theme {
   --color-color-bg: var(--color-bg);
@@ -16,7 +17,7 @@
   --color-bg: #fff;
   --color-strong: #111111;
   --color-muted: #888888;
-  --color-subtle: #e0e0e0;
+  --color-subtle: #f0f0f0;
 }
 
 body {
@@ -36,7 +37,12 @@ html::selection {
 
 code {
   font-family: var(--font-mono);
+  background: var(--color-subtle);
+  color: var(--color-strong);
+  border-radius: 2px;
+  padding: 1px 4px;
   font-size: 13px;
+  width: fit-content;
 }
 
 * {

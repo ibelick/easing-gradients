@@ -1,27 +1,48 @@
 {
   "name": "easing-gradients",
   "version": "0.0.1",
-  "description": "Adds easing functions to CSS gradients in Tailwind CSS.",
+  "description": "Tailwind CSS v4 plugin for eased gradient stops",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    }
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch"
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run build"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=4.0.0"
   },
   "devDependencies": {
-    "tsup": "^8.1.0",
-    "typescript": "^5.4.5"
-  }
+    "tailwindcss": "^4.2.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  },
+  "keywords": [
+    "tailwindcss",
+    "plugin",
+    "gradient",
+    "easing",
+    "css"
+  ]
 }
