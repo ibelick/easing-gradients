@@ -1,6 +1,8 @@
-import Playground from "./Playground";
+import { Playground } from "./playground";
+import InstallCommand from "./components/install-command";
+import CodeBlock from "./components/code-block";
 
-export default function App() {
+export function App() {
   return (
     <main className="min-h-screen px-5 py-20">
       <div className="mx-auto flex max-w-2xl flex-col gap-14">
@@ -85,14 +87,13 @@ export default function App() {
 
         <div className="flex flex-col gap-4">
           <p className="font-[450] text-strong">Installation</p>
-          <code>pnpm add easing-gradients</code>
+          <InstallCommand>pnpm add easing-gradients</InstallCommand>
           <p>
-            Then add the plugin to your <code>global.css</code>:
+            Then add the plugin to your <code className="code">global.css</code>
+            :
           </p>
-          <pre>
-            <code>{`@import "tailwindcss";
-@plugin "easing-gradients";`}</code>
-          </pre>
+          <CodeBlock as="pre">{`@import "tailwindcss";
+@plugin "easing-gradients";`}</CodeBlock>
         </div>
 
         <div className="flex flex-col gap-4">
@@ -114,10 +115,14 @@ export default function App() {
             <tbody className="col-span-3 grid grid-cols-subgrid border-t border-border">
               <tr className="col-span-3 grid grid-cols-subgrid border-b border-border last:border-b-0">
                 <td className="px-2 py-2 align-top font-mono text-strong">
-                  <code>gradient-ease-linear</code>
+                  <code className="code" className="code">
+                    gradient-ease-linear
+                  </code>
                 </td>
                 <td className="px-2 py-2 align-top font-mono text-muted">
-                  <code>--tw-gradient-via-stops: eased stops (0,0,1,1)</code>
+                  <code className="code">
+                    --tw-gradient-via-stops: eased stops (0,0,1,1)
+                  </code>
                 </td>
                 <td className="px-2 py-2 align-top text-muted">
                   Keeps default linear gradient distribution.
@@ -125,10 +130,12 @@ export default function App() {
               </tr>
               <tr className="col-span-3 grid grid-cols-subgrid border-b border-border last:border-b-0">
                 <td className="px-2 py-2 align-top font-mono text-strong">
-                  <code>gradient-ease-in</code>
+                  <code className="code">gradient-ease-in</code>
                 </td>
                 <td className="px-2 py-2 align-top font-mono text-muted">
-                  <code>--tw-gradient-via-stops: eased stops (0.42,0,1,1)</code>
+                  <code className="code">
+                    --tw-gradient-via-stops: eased stops (0.42,0,1,1)
+                  </code>
                 </td>
                 <td className="px-2 py-2 align-top text-muted">
                   Packs more color change toward the end of the gradient.
@@ -136,10 +143,12 @@ export default function App() {
               </tr>
               <tr className="col-span-3 grid grid-cols-subgrid border-b border-border last:border-b-0">
                 <td className="px-2 py-2 align-top font-mono text-strong">
-                  <code>gradient-ease-out</code>
+                  <code className="code">gradient-ease-out</code>
                 </td>
                 <td className="px-2 py-2 align-top font-mono text-muted">
-                  <code>--tw-gradient-via-stops: eased stops (0,0,0.58,1)</code>
+                  <code className="code">
+                    --tw-gradient-via-stops: eased stops (0,0,0.58,1)
+                  </code>
                 </td>
                 <td className="px-2 py-2 align-top text-muted">
                   Packs more color change near the start of the gradient.
@@ -147,10 +156,10 @@ export default function App() {
               </tr>
               <tr className="col-span-3 grid grid-cols-subgrid border-b border-border last:border-b-0">
                 <td className="px-2 py-2 align-top font-mono text-strong">
-                  <code>gradient-ease-in-out</code>
+                  <code className="code">gradient-ease-in-out</code>
                 </td>
                 <td className="px-2 py-2 align-top font-mono text-muted">
-                  <code>
+                  <code className="code">
                     --tw-gradient-via-stops: eased stops (0.42,0,0.58,1)
                   </code>
                 </td>
@@ -160,15 +169,16 @@ export default function App() {
               </tr>
               <tr className="col-span-3 grid grid-cols-subgrid border-b border-border last:border-b-0">
                 <td className="px-2 py-2 align-top font-mono text-strong">
-                  <code>gradient-ease-[...]</code>
+                  <code className="code">gradient-ease-[...]</code>
                 </td>
                 <td className="px-2 py-2 align-top font-mono text-muted">
-                  <code>
+                  <code className="code">
                     --tw-gradient-via-stops: eased stops (custom bezier)
                   </code>
                 </td>
                 <td className="px-2 py-2 align-top text-muted">
-                  Uses your own <code>cubic-bezier(x1,y1,x2,y2)</code> curve.
+                  Uses your own{" "}
+                  <code className="code">cubic-bezier(x1,y1,x2,y2)</code> curve.
                 </td>
               </tr>
             </tbody>

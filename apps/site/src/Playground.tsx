@@ -50,7 +50,7 @@ function formatBezier(bezier: [number, number, number, number]) {
   return `cubic-bezier(${bezier.map((value) => value.toFixed(2)).join(",")})`;
 }
 
-export default function Playground() {
+export function Playground() {
   const [preset, setPreset] = useState<Preset>("ease-out");
   const [custom, setCustom] = useState<[number, number, number, number]>([
     0.35, 0.0, 0.2, 1.0,
@@ -158,7 +158,7 @@ export default function Playground() {
               style={{ ...customStyle, height: `${maskHeight}%` }}
             />
           </div>
-          <code>{fullClassNamePreview}</code>
+          <code className="code">{fullClassNamePreview}</code>
         </div>
 
         <div className="flex flex-col gap-3 sm:col-span-2">
