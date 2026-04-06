@@ -115,9 +115,7 @@ export function App() {
             <tbody className="col-span-3 grid grid-cols-subgrid border-t border-border">
               <tr className="col-span-3 grid grid-cols-subgrid border-b border-border last:border-b-0">
                 <td className="px-2 py-2 align-top font-mono text-strong">
-                  <code className="code" className="code">
-                    gradient-ease-linear
-                  </code>
+                  <code className="code">gradient-ease-linear</code>
                 </td>
                 <td className="px-2 py-2 align-top font-mono text-muted">
                   <code className="code">
